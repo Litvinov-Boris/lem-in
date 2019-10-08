@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:33:27 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/08 21:40:27 by svivienn         ###   ########.fr       */
+/*   Updated: 2019/10/08 22:05:03 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,20 @@
 # include <stdio.h>
 # include <errno.h>
 
-typedef struct	s_room
+# define COMENT	0
+# define ANTS	1
+# define ROOM	2
+# define TUBE	3
+# define START	4
+# define END	5
+
+typedef struct			s_room
 {
-	char		*room;
-	int			x;
-	int			y;
+	char				*room;
+	int					x;
+	int					y;
 	struct s_room		*next;
-}				t_room;
+}						t_room;
 
 typedef struct	s_anthill
 {
@@ -48,11 +55,12 @@ void print_error(char *str);
 void	initlemin(t_lemin *data);
 t_room	*initroom();
 
-//int parser(char *str);
-int	is_coment(char *str);
-int	is_ants(char *str);
-int	is_room(char *str);
-int	is_tube(char *str);
-int	is_valid(char *str, t_lemin *data);
+int		is_coment(char *str);
+int		is_ants(char *str);
+int		is_room(char *str);
+int		is_tube(char *str);
+int		is_valid(char *str, t_lemin *data);
+
+void	parser(char *str, t_lemin *data);
 
 #endif

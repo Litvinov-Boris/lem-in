@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 21:46:34 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/08 21:46:35 by svivienn         ###   ########.fr       */
+/*   Updated: 2019/10/08 22:02:05 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,17 @@ int	is_tube(char *str)
 int	is_valid(char *str, t_lemin *data)
 {
 	if (is_coment(str))
-		return (0);
+		return (COMENT);
 	else if (data->n_ants == 0 && is_ants(str))
-		return (1);
+		return (ANTS);
 	else if (is_room(str))
-		return (2);
+		return (ROOM);
 	else if (is_tube(str))
-		return (3);
+		return (TUBE);
 	else if (!ft_strcmp(str, "##start"))
-		return (4);
+		return (START);
 	else if (!ft_strcmp(str, "##end"))
-		return (5);
+		return (END);
 	else
 		return (-1);
 }
