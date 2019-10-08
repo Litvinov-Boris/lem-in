@@ -1,38 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/03 20:34:18 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/08 21:41:19 by svivienn         ###   ########.fr       */
+/*   Created: 2019/10/08 15:58:19 by svivienn          #+#    #+#             */
+/*   Updated: 2019/10/08 16:32:28 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
-int	main(void)
+void print_error(char *str)
 {
-	t_lemin data;
-	int ret;
-	char *line;
-
-	initlemin(&data);
-	int fd = open("./test", O_RDWR);
-	while ((ret = get_next_line(fd, &line)))
-	{
-		if (ret == -1)
-			print_error("Read Error");
-		if (is_valid(line, &data))
-			printf("%i\n", is_valid(line, &data));
-		else
-			printf("net\n");
-		free(line);
-	}
-	close(fd);
-	return (0);
+	perror(str);
+	exit(1);
 }
