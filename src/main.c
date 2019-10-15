@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:34:18 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/08 22:07:40 by svivienn         ###   ########.fr       */
+/*   Updated: 2019/10/15 19:47:13 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ int	main(void)
 	char *line;
 
 	initlemin(&data);
-	int fd = open("./test", O_RDWR);
-	while ((ret = get_next_line(fd, &line)))
+	fd = open("./test", O_RDWR);
+	parser(&data);
+	t_room *save;
+	save = data.anthill.head;
+	while (save != NULL)
 	{
-		if (ret == -1)
-			print_error("Read Error");
-		parser(line, &data);
-		free(line);
+		printf ("%s %i %i\n", save->room, save->x, save->y);
+		save = save->next;
 	}
 	close(fd);
 	return (0);
