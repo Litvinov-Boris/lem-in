@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 16:02:40 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/15 17:43:14 by svivienn         ###   ########.fr       */
+/*   Updated: 2019/10/22 20:50:23 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,8 @@ void	initlemin(t_lemin *data)
 
 	data->anthill.n_room = 0;
 	data->anthill.head = NULL;
-	data->anthill.tail = NULL;
+	data->anthill.start = NULL;
 	data->anthill.end = NULL;
-	data->anthill.flag_init = 0;
-
-	data->ffull = 0;
 }
 
 t_room	*initroom(char **split)

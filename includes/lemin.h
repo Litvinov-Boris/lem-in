@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:33:27 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/15 19:45:40 by svivienn         ###   ########.fr       */
+/*   Updated: 2019/10/22 21:13:46 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,8 @@ typedef struct			s_room
 typedef struct	s_anthill
 {
 	t_room		*head;
-	t_room		*tail;
+	t_room		*start;
 	t_room		*end;
-	char		flag_init;
 	int			n_room;           
 }				t_anthill;
 
@@ -50,7 +49,6 @@ typedef struct	s_lemin
 {
 	int			n_ants;
 	t_anthill	anthill;
-	char		ffull;
 	int			**connection;
 }               t_lemin;
 
@@ -67,8 +65,11 @@ int		is_tube(char *str);
 int		is_valid(char *str, t_lemin *data);
 
 void	ants_parser(char *str, t_lemin *data, int line_mode, int *mode);
-void	room_parser();
+void	room_parser(int *mode, int line_mode, char *str, t_lemin *data);
 void	tube_parser();
 void	parser(t_lemin *data);
+
+t_room	*room_parcer2(char *line, t_anthill *data);
+void	stop_parcer(t_anthill *data, int stat);
 
 #endif
