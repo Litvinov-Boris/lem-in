@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: boris <boris@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 16:02:40 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/28 16:07:26 by boris            ###   ########.fr       */
+/*   Updated: 2019/10/28 21:13:38 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 void	initlemin(t_lemin *data)
 {
 	data->n_ants = 0;
-
-	data->connection = NULL;
-
 	data->anthill.n_room = 0;
 	data->anthill.head = NULL;
 	data->anthill.start = NULL;
 	data->anthill.end = NULL;
+	data->tubes = NULL;
 }
 
 t_room	*initroom(char **split)

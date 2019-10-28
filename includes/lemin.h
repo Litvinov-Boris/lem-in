@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: boris <boris@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:33:27 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/28 16:03:12 by boris            ###   ########.fr       */
+/*   Updated: 2019/10/28 21:26:50 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct			s_tube
 {
 	t_room				*room1;
 	t_room				*room2;
-	struct s_tibe		*next;
+	struct s_tube		*next;
 }						t_tube;
 
 typedef struct	s_anthill
@@ -56,7 +56,7 @@ typedef struct	s_lemin
 {
 	int			n_ants;
 	t_anthill	anthill;
-	t_tube		tubes;
+	t_tube		*tubes;
 }               t_lemin;
 
 void	print_error(char *str);
@@ -76,8 +76,9 @@ void	room_parser(int *mode, int line_mode, char *str, t_lemin *data);
 void	tube_parser();
 void	parser(t_lemin *data);
 
-t_room	*room_parcer2(char *line, t_anthill *data);
+t_room	*room_parser2(char *line, t_anthill *data);
 void	stop_parser(t_anthill *data, int stat);
 t_room	*search_room(char *str, t_anthill *data);
+void	push_tube(t_room *room1, t_room *room2, t_tube **head);
 
 #endif

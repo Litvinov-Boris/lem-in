@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:34:18 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/15 19:47:13 by svivienn         ###   ########.fr       */
+/*   Updated: 2019/10/28 21:32:31 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ int	main(void)
 	{
 		printf ("%s %i %i\n", save->room, save->x, save->y);
 		save = save->next;
+	}
+	t_tube *save1 = data.tubes;
+	while (save1 != NULL)
+	{
+		printf ("%s - %s\n", save1->room1->room, save1->room2->room);
+		save1 = save1->next;
 	}
 	close(fd);
 	return (0);

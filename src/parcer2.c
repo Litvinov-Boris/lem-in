@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcer2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: boris <boris@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 20:27:30 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/28 16:12:05 by boris            ###   ########.fr       */
+/*   Updated: 2019/10/28 21:30:14 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	stop_parser(t_anthill *data, int stat)
 	if (ret == -1)
 		print_error("Read Error");
 	if (stat == START)
-		data->start = room_parcer2(line, data);
+		data->start = room_parser2(line, data);
 	else
-		data->end = room_parcer2(line, data);
+		data->end = room_parser2(line, data);
 }
 
 t_room	*search_room(char *str, t_anthill *data)
@@ -71,7 +71,7 @@ t_room	*search_room(char *str, t_anthill *data)
 	return (NULL);
 }
 
-void	push_tube(t_tube *room1, t_tube *room2, t_tube *head)
+void	push_tube(t_room *room1, t_room *room2, t_tube **head)
 {
 	t_tube	*room;
 	t_tube	*save;
@@ -80,14 +80,22 @@ void	push_tube(t_tube *room1, t_tube *room2, t_tube *head)
 	room->room1 = room1;
 	room->room2 = room2;
 	room->next = NULL;
-	if (head = NULL)
-		head = room;
+	if (*head == NULL)
+		*head = room;
 	else
 	{
-		save = head;
+		save = *head;
 		while (save->next != NULL)
-			if (save->room1 == room->room1 && save->room2 == room->room2)
-				print_error("")
+		{
+			if ((save->room1 == room->room1 && save->room2 == room->room2) ||
+			(save->room1 == room->room2 && save->room2 == room->room1))
+				print_error("Duplication Of Tubes");
+			save = save->next;
+		}
+		if ((save->room1 == room->room1 && save->room2 == room->room2) ||
+			(save->room1 == room->room2 && save->room2 == room->room1))
+				print_error("Duplication Of Tubes");
+		save->next = room;
 	}
 	
 }
