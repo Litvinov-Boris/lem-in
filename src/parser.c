@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: boris <boris@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 21:53:35 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/22 21:14:02 by svivienn         ###   ########.fr       */
+/*   Updated: 2019/10/28 16:31:10 by boris            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,36 @@ void	ants_parser(char *str, t_lemin *data, int line_mode, int *mode)
 void	room_parser(int *mode, int line_mode, char *str, t_lemin *data)
 {
 	if (line_mode == ROOM)
-		room_parcer2(str, &(data->anthill));
+		room_parser2(str, &(data->anthill));
 	else if (line_mode == START)
-		stop_parcer(&(data->anthill), START);
+		stop_parser(&(data->anthill), START);
 	else if (line_mode == END)
-		stop_parcer(&(data->anthill), END);
+		stop_parser(&(data->anthill), END);
 	else if (line_mode == TUBE)
 	{
 		*mode = TUBE;
+		tube_parser(line_mode, str, data);
 	}
 	else
 		print_error("Invalid Input");
 }
 
-void	tube_parser()
+void	tube_parser(int line_mode, char *str, t_lemin *data)
 {
+	char	**split;
+	t_room	*room1;
+	t_room	*room2;
+
+	if (line_mode != TUBE)
+		print_error("Invalid Input");
+	if (!(split = ft_strsplit(str, '-')))
+		print_error("Memory Allocation Error, Type 'TUBE'");
+	if (!(room1 = search_room(split[0], &(data->anthill))) ||
+		!(room2 = search_room(split[1], &(data->anthill))))
+		print_error("No Rum");
+	if (room1 == room2)
+		print_error("Singl Room");
+	push_tube(room1, room2, &(data->tubes));
 }
 
 void	parser(t_lemin *data)
@@ -61,7 +76,7 @@ void	parser(t_lemin *data)
 		else if (mode == ROOM)
 			room_parser(&mode, line_mode, line, data);//парсер комнат
 		else if (mode == TUBE)
-			tube_parser();//парсер труб
+			tube_parser(line_mode, line, data);//парсер труб
 		free(line);
 	}
 }

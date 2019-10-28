@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parcer2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: boris <boris@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 20:27:30 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/22 21:12:26 by svivienn         ###   ########.fr       */
+/*   Updated: 2019/10/28 16:12:05 by boris            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_room	*room_parcer2(char *line, t_anthill *data)
+t_room	*room_parser2(char *line, t_anthill *data)
 {
 	char 	**split;
 	t_room	*room;
@@ -39,7 +39,7 @@ t_room	*room_parcer2(char *line, t_anthill *data)
 	return (room);
 }
 
-void	stop_parcer(t_anthill *data, int stat)
+void	stop_parser(t_anthill *data, int stat)
 {
 	char	*line;
 	int ret;
@@ -55,4 +55,39 @@ void	stop_parcer(t_anthill *data, int stat)
 		data->start = room_parcer2(line, data);
 	else
 		data->end = room_parcer2(line, data);
+}
+
+t_room	*search_room(char *str, t_anthill *data)
+{
+	t_room *save;
+
+	save = data->head;
+	while (save != NULL)
+	{
+		if (!ft_strcmp(str, save->room))
+			return(save);
+		save = save->next;
+	}
+	return (NULL);
+}
+
+void	push_tube(t_tube *room1, t_tube *room2, t_tube *head)
+{
+	t_tube	*room;
+	t_tube	*save;
+
+	room = (t_tube*)malloc(sizeof(t_tube));
+	room->room1 = room1;
+	room->room2 = room2;
+	room->next = NULL;
+	if (head = NULL)
+		head = room;
+	else
+	{
+		save = head;
+		while (save->next != NULL)
+			if (save->room1 == room->room1 && save->room2 == room->room2)
+				print_error("")
+	}
+	
 }
