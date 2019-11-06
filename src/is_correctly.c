@@ -6,13 +6,13 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 21:46:34 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/15 16:51:38 by svivienn         ###   ########.fr       */
+/*   Updated: 2019/11/06 17:37:55 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int	is_coment(char *str)
+static int	is_coment(char *str)
 {
 	if (str[0] == '#' && ft_strcmp(str, "##start") &&
 							ft_strcmp(str, "##end"))
@@ -21,7 +21,7 @@ int	is_coment(char *str)
 		return (0);
 }
 
-int	is_ants(char *str)
+static int	is_ants(char *str)
 {
 	if (ft_countwords(str, ' ') == 1)
 	{
@@ -36,7 +36,7 @@ int	is_ants(char *str)
 	return (0);
 }
 
-int	is_room(char *str)
+static int	is_room(char *str)
 {
 	if (ft_countwords(str, ' ') == 3)
 	{
@@ -60,16 +60,17 @@ int	is_room(char *str)
 	return (0);
 }
 
-int	is_tube(char *str)
+static int	is_tube(char *str)
 {
-	return ((ft_countwords(str, ' ') == 1 && ft_countwords(str, '-') == 2) ? 1 : 0);
+	return ((ft_countwords(str, ' ') == 1 && ft_countwords(str, '-') == 2) ?
+				1 : 0);
 }
 
-int	is_valid(char *str, t_lemin *data)
+int			is_valid(char *str)
 {
 	if (is_coment(str))
 		return (COMENT);
-	else if (data->n_ants == 0 && is_ants(str))
+	else if (is_ants(str))
 		return (ANTS);
 	else if (is_room(str))
 		return (ROOM);

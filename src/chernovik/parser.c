@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 21:53:35 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/28 21:26:13 by svivienn         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:37:02 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,15 @@ void	parser(t_lemin *data)
 	{
 		if (ret == -1)
 			print_error("Read Error");
-		else if ((line_mode = is_valid(line, data)) == COMENT);
+		else if ((line_mode = is_valid(line, data)) == COMENT)
+		{
+		}
 		else if (mode == ANTS)
 			ants_parser(line, data, line_mode, &mode);
 		else if (mode == ROOM)
-			room_parser(&mode, line_mode, line, data);//парсер комнат
+			room_parser(&mode, line_mode, line, data);
 		else if (mode == TUBE)
-			tube_parser(line_mode, line, data);//парсер труб
+			tube_parser(line_mode, line, data);
 		free(line);
 	}
 }

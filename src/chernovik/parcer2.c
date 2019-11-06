@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 20:27:30 by svivienn          #+#    #+#             */
-/*   Updated: 2019/10/28 21:30:14 by svivienn         ###   ########.fr       */
+/*   Updated: 2019/11/05 18:41:19 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ t_room	*room_parser2(char *line, t_anthill *data)
 		save = data->head;
 		while (save->next != NULL)
 		{
-			if (!ft_strcmp(save->room, room->room))
+			if (!ft_strcmp(save->room, room->room) || 
+			(save->x == room->x && save->y == room->y))
 				print_error("Duplication Of Rooms");
 			save = save->next;
 		}

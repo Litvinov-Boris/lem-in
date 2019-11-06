@@ -10,11 +10,8 @@
             "args": [
                 "-g",
                 "./src/main.c",
-                "./src/errors.c",
-                "./src/initialization.c",
+                "./src/tools.c",
                 "./src/is_correctly.c",
-                "./src/parser.c",
-                "./src/parcer2.c",
                 "./libft/libft.a",
                 "-I./includes",
                 "-I./libft"
