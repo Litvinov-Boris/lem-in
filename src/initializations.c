@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   initializations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/03 20:34:18 by svivienn          #+#    #+#             */
-/*   Updated: 2019/11/26 22:43:28 by svivienn         ###   ########.fr       */
+/*   Created: 2019/11/26 22:09:24 by svivienn          #+#    #+#             */
+/*   Updated: 2019/11/26 22:27:03 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
-int	main(void)
+void	init_lemin(t_lemin *data)
 {
-	t_lemin	data;
-
-	fd = open("./test", O_RDWR);
-	init_lemin(&data);
-	//data.rooms[100].x = 100;
-	read_map(&data);
-	close(fd);
-	return (0);
+	bzero(data, sizeof(t_lemin));
+	if ((data->rooms = (t_room*)malloc(sizeof(t_room) * 100)) == NULL)
+		error("Memory Allocation Error, Type 'Rooms'");
+	bzero(data->rooms, sizeof(t_room) * 100);
 }
