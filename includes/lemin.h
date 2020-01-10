@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:33:27 by svivienn          #+#    #+#             */
-/*   Updated: 2019/11/26 22:42:04 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/10 21:45:58 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,49 @@
 
 //hslartib
 
-int fd; 
+int							g_fd;
 
-typedef struct	s_subroom
+typedef struct				s_list
 {
-	int			n_step;
-	void		*rooms;
-	void		*parent;
-	char		visit;
-}				t_subroom;
+	void					*data;
+	struct s_list			*next;
+}							t_list;
 
-typedef struct	s_room
+typedef struct				s_room
 {
-	char		*name;
-	int			x;
-	int			y;
-	t_subroom	in;
-	t_subroom	out;
-}				t_room;
+	char					*name;
+	int						x;
+	int						y;
+	struct					s_subroom
+	{
+		t_list				*links;
+		char				visited;
+		struct s_room		*master;
+		int					distance;
+		struct s_subroom	*parent;
+	}						in;
+	struct s_subroom		out;
+	struct s_room			*parent_old;
+	struct s_room			*parent_new;
+	struct s_room			*child_old;
+	struct s_room			*child_new;
+}							t_room;
 
-
-typedef struct	s_lemin
+typedef struct				s_lemin
 {
-	int			n_ants;
-	int			n_rooms;
-	t_room		*rooms;
+	int						n_ants;
+	t_list					*rooms;
+	t_room					*start;
+	t_room					*end;
+}							t_lemin;
 
-}				t_lemin;
+int							s_valid(char *str);
 
+void						error(char *str);
+void						*ft_realloc(void *data, size_t new_size,
+							size_t old_size);
 
-int	is_valid(char *str);
+void						init_lemin(t_lemin *data);
 
-void	error(char *str);
-void	*ft_realloc(void *data, size_t new_size, size_t old_size);
-
-void	init_lemin(t_lemin *data);
-
-void		read_map(t_lemin *data);
+void						read_map(t_lemin *data);
 #endif
