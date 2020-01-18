@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:34:18 by svivienn          #+#    #+#             */
-/*   Updated: 2019/11/26 22:43:28 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/18 17:22:36 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ int	main(void)
 {
 	t_lemin	data;
 
-	fd = open("./test", O_RDWR);
-	init_lemin(&data);
-	//data.rooms[100].x = 100;
+	fd = open("./test", O_RDWR);//for tests
+	bzero(&data, sizeof(t_lemin));//обнуление инфыпо всему
 	read_map(&data);
-	close(fd);
+	close(fd);//for tests
 	return (0);
 }

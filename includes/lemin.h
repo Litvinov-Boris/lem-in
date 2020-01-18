@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:33:27 by svivienn          #+#    #+#             */
-/*   Updated: 2020/01/10 21:45:58 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/18 20:35:24 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@
 
 //hslartib
 
-int							g_fd;
+int							fd;
 
-typedef struct				s_list
+/*typedef struct				s_list
 {
 	void					*data;
 	struct s_list			*next;
-}							t_list;
+}							t_list;*/
 
 typedef struct				s_room
 {
@@ -60,18 +60,17 @@ typedef struct				s_room
 typedef struct				s_lemin
 {
 	int						n_ants;
+	int						height;
 	t_list					*rooms;
 	t_room					*start;
 	t_room					*end;
 }							t_lemin;
 
-int							s_valid(char *str);
+int							is_valid(char *str);
 
 void						error(char *str);
-void						*ft_realloc(void *data, size_t new_size,
-							size_t old_size);
 
-void						init_lemin(t_lemin *data);
+t_room						*init_room(char *str);
 
 void						read_map(t_lemin *data);
 #endif
