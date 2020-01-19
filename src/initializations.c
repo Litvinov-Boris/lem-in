@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 22:09:24 by svivienn          #+#    #+#             */
-/*   Updated: 2020/01/18 20:35:50 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/19 23:15:01 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ t_room	*init_room(char *str)
 	free(work);
 	room->in.master = room;
 	room->out.master = room;
-	if (!(room->in.links = ft_lstnew(&(room->out), sizeof(&(room->out)))))
+	if (!(room->in.links = ft_lstnew(0,0)))
 		error("Malloc Allocation Error: List");
+	room->in.links->content = &(room->out);
 	return(room);
 }

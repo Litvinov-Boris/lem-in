@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:33:27 by svivienn          #+#    #+#             */
-/*   Updated: 2020/01/18 20:35:24 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/20 00:04:40 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ typedef struct				s_lemin
 int							is_valid(char *str);
 
 void						error(char *str);
+int							is_replay(t_lemin *data, t_room *room);
 
 t_room						*init_room(char *str);
 
+void						room_parser(int line_mode, t_lemin *data,char *str, int *mode);
 void						read_map(t_lemin *data);
 #endif

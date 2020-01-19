@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:41:14 by svivienn          #+#    #+#             */
-/*   Updated: 2019/11/26 22:08:00 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/19 23:59:02 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,25 @@ void	error(char *str)
 	exit(1);
 }
 
-void	*ft_realloc(void *data, size_t new_size, size_t old_size)
+int		is_replay(t_lemin *data, t_room *room)
 {
-	void	*t;
+	t_room	*work;
+	t_list	*work2;
 
-	if (new_size > old_size)
+	if (data && data->rooms && data->rooms->content)
 	{
-		t = malloc(new_size);
-		ft_memset(t, 0, new_size);
-		if (data)
-			ft_memcpy(t, data, old_size);
-		return (t);
+		work = data->rooms->content;
+		work2 = data->rooms;
+		while (work2 != NULL)
+		{
+			if (work->name == room->name || (work->x == room->x &&
+				work->y == room->y))
+				return (1);
+			work2 = work2->next;
+			if (work2 != NULL)
+				work = work2->content;
+		}
+		return (0);
 	}
-	return (NULL);
+	return (0);
 }
