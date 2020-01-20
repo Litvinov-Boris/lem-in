@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:33:27 by svivienn          #+#    #+#             */
-/*   Updated: 2020/01/20 00:04:40 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/20 19:33:26 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int							is_valid(char *str);
 
 void						error(char *str);
 int							is_replay(t_lemin *data, t_room *room);
+t_room						*search_room(t_lemin *data, char *room);
+int							is_replay_tube(t_room *room1, t_room *room2);
 
 t_room						*init_room(char *str);
 
