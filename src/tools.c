@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:41:14 by svivienn          #+#    #+#             */
-/*   Updated: 2020/01/20 19:32:25 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/22 14:36:09 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,31 @@ int		is_replay_tube(t_room *room1, t_room *room2)
 {
 	t_list	*work;
 
-	work = room1->out.links;
-	while (work && work->content != &(room2->in))
+	work = room1->out->links;
+	while (work && ((t_tube*)work->content)->link != room2->in)
 		work = work->next;
 	if (work != NULL)
 		return (1);
-	work = room2->out.links;
-	while (work && work->content != &(room1->in))
+	work = room2->out->links;
+	while (work && ((t_tube*)work->content)->link != room1->in)
 		work = work->next;
 	if (work != NULL)
 		return (1);
 	return (0);
+}
+
+void	zero_subrooms_deikstra(t_lemin *data)
+{
+	t_list	*work;
+
+	work = data->rooms;
+	while (work != NULL)
+	{
+		((t_room*)work->content)->in->visited = 0;
+		((t_room*)work->content)->out->visited = 0;
+		((t_room*)work->content)->in->distance = INT_MAX;
+		((t_room*)work->content)->out->distance = INT_MAX;
+		work = work->next;
+	}
+	data->start->in->distance = 0;
 }

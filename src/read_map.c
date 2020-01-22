@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 22:32:02 by svivienn          #+#    #+#             */
-/*   Updated: 2020/01/20 19:41:53 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/22 11:43:37 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,27 @@ static void	tube_parser(int line_mode, t_lemin *data, char *line)
 	room2 = search_room(data, searching[1]);
 	if (!ft_strcmp(searching[0], searching[1]) || is_replay_tube(room1, room2))
 		error("Invalid Input");
-	work = ft_lstnew(0,0);
-	work->content = &(room1->in);
-	ft_lstadd(&(room2->out.links), work);
-	work = ft_lstnew(0,0);
-	work->content = &(room2->in);
-	ft_lstadd(&(room1->out.links), work);
+	work = ft_lstnew(0, 0);
+	work->content = init_tube(1, room1->in);
+	if (room2->out->links == NULL)
+		room2->out->links = work;
+	else
+		ft_lstadd(&(room2->out->links), work);
+	work = ft_lstnew(0, 0);
+	work->content = init_tube(1, room2->in);
+	if (room1->out->links == NULL)
+		room1->out->links = work;
+	else
+		ft_lstadd(&(room1->out->links), work);
 }
 
-void		room_parser(int line_mode, t_lemin *data,char *str, int *mode)
+void		room_parser(int line_mode, t_lemin *data, char *str, int *mode)
 {
 	t_list *work;
 
 	if (line_mode == ROOM)
 	{
-		if (!(work = ft_lstnew(0,0)))
+		if (!(work = ft_lstnew(0, 0)))
 			error("Malloc Allocation Error: List");
 		work->content = init_room(str);
 		if (is_replay(data, work->content))
@@ -101,13 +107,15 @@ void		read_map(t_lemin *data)
 	{
 		if (ret == -1)
 			error("Read Error");
-		else if ((linemode = is_valid(line)) == COMENT);
+		else if ((linemode = is_valid(line)) == COMENT)
+		{
+		}
 		else if (mode == ANTS)
 			ants_parser(linemode, data, line, &mode);
 		else if (mode == ROOM)
 			room_parser(linemode, data, line, &mode);
 		else if (mode == TUBE)
 			tube_parser(linemode, data, line);
-		free (line);
+		free(line);
 	}
 }

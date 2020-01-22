@@ -6,13 +6,35 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 22:09:24 by svivienn          #+#    #+#             */
-/*   Updated: 2020/01/19 23:15:01 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/22 14:37:38 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_room	*init_room(char *str)
+static t_subroom	*initsubroom(int type, t_room *master)
+{
+	t_subroom *subroom;
+
+	if (!(subroom = (t_subroom*)malloc(sizeof(t_subroom))))
+		error("Malloc Allocation Error: Suboom");
+	bzero(subroom, sizeof(t_subroom));
+	subroom->type = type;
+	subroom->master = master;
+	return (subroom);
+}
+
+t_tube				*init_tube(int weight, t_subroom *link)
+{
+	t_tube	*tube;
+
+	tube = (t_tube*)malloc(sizeof(t_tube));
+	tube->link = link;
+	tube->weight = weight;
+	return (tube);
+}
+
+t_room				*init_room(char *str)
 {
 	t_room	*room;
 	char	**work;
@@ -28,10 +50,10 @@ t_room	*init_room(char *str)
 	free(work[1]);
 	free(work[2]);
 	free(work);
-	room->in.master = room;
-	room->out.master = room;
-	if (!(room->in.links = ft_lstnew(0,0)))
+	room->in = initsubroom(IN, room);
+	room->out = initsubroom(OUT, room);
+	if (!(room->in->links = ft_lstnew(0, 0)))
 		error("Malloc Allocation Error: List");
-	room->in.links->content = &(room->out);
-	return(room);
+	room->in->links->content = init_tube(0, room->out);
+	return (room);
 }

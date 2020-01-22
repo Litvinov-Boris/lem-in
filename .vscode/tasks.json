@@ -14,6 +14,7 @@
                 "./src/is_correctly.c",
                 "./src/initializations.c",
                 "./src/read_map.c",
+                "./src/deikstra.c",
                 "./libft/libft.a",
                 "-I./includes",
                 "-I./libft"
