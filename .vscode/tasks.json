@@ -15,6 +15,7 @@
                 "./src/initializations.c",
                 "./src/read_map.c",
                 "./src/deikstra.c",
+                "./src/suurballe.c",
                 "./libft/libft.a",
                 "-I./includes",
                 "-I./libft"

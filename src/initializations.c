@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 22:09:24 by svivienn          #+#    #+#             */
-/*   Updated: 2020/01/22 14:37:38 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:30:00 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_tube				*init_tube(int weight, t_subroom *link)
 	tube = (t_tube*)malloc(sizeof(t_tube));
 	tube->link = link;
 	tube->weight = weight;
+	tube->turn = 0;
 	return (tube);
 }
 

@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:33:27 by svivienn          #+#    #+#             */
-/*   Updated: 2020/01/22 14:25:59 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/29 00:43:43 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ struct						s_tube
 {
 	t_subroom				*link;
 	int						weight;
+	int						turn;
 };
 
 struct						s_subroom
@@ -71,6 +72,7 @@ struct						s_room
 struct				s_lemin
 {
 	int						n_ants;
+	int						sum_dist;
 	int						trails;
 	int						height;
 	t_list					*rooms;
@@ -96,4 +98,6 @@ void						read_map(t_lemin *data);
 void						print_1_step(t_lemin *data);
 
 void						deikstra(t_lemin *data);
+
+int							suurballe(t_lemin *data);
 #endif

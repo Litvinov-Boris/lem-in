@@ -6,7 +6,7 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:41:14 by svivienn          #+#    #+#             */
-/*   Updated: 2020/01/22 14:36:09 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/29 01:11:31 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,10 @@ void	zero_subrooms_deikstra(t_lemin *data)
 		((t_room*)work->content)->out->visited = 0;
 		((t_room*)work->content)->in->distance = INT_MAX;
 		((t_room*)work->content)->out->distance = INT_MAX;
+		((t_room*)work->content)->in->parent = NULL;
+		((t_room*)work->content)->out->parent = NULL;
+		((t_room*)work->content)->child_new = NULL;
+		((t_room*)work->content)->parent_new = NULL;
 		work = work->next;
 	}
 	data->start->in->distance = 0;

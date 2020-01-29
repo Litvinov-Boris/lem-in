@@ -6,17 +6,17 @@
 /*   By: svivienn <svivienn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:13:59 by svivienn          #+#    #+#             */
-/*   Updated: 2020/01/22 14:38:41 by svivienn         ###   ########.fr       */
+/*   Updated: 2020/01/29 02:37:24 by svivienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_subroom	*search_min(t_lemin *data)
+static t_subroom	*search_min(t_lemin *data)
 {
-	t_list		*work;
-	t_subroom	*sing;
-	int			min;
+	t_list			*work;
+	t_subroom		*sing;
+	int				min;
 
 	min = INT_MAX;
 	work = data->rooms;
@@ -40,9 +40,9 @@ t_subroom	*search_min(t_lemin *data)
 	return (sing);
 }
 
-void		change_dist(t_subroom *data)
+static void			change_dist(t_subroom *data)
 {
-	t_list	*work;
+	t_list		*work;
 
 	work = data->links;
 	while (work != NULL)
@@ -59,9 +59,9 @@ void		change_dist(t_subroom *data)
 	data->visited = 1;
 }
 
-void		deikstra(t_lemin *data)
+void				deikstra(t_lemin *data)
 {
-	t_subroom *work;
+	t_subroom	*work;
 
 	zero_subrooms_deikstra(data);
 	while ((work = search_min(data)))
